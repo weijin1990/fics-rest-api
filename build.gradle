@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.springframework.boot' version '2.5.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(JavaCompile){
+    options.encoding = 'UTF-8'
+}
+
+javadoc {
+    options.encoding = 'UTF-8'
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+application {
+    mainClassName = 'jp.co.fics.FicsApplication' // 指定您的 Spring Boot 主类的完整路径
+}
+
+test {
+    useJUnitPlatform()
+}

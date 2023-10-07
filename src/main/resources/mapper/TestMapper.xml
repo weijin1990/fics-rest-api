@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.fics.core.dao.TestDAO">
+
+    <resultMap id="BaseResultMap" type="jp.co.fics.core.dto.TestDTO">
+        <result property="type" column="type"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+    </resultMap>
+    <sql id="col_list">
+        type, name, description
+    </sql>
+    <select id="findListT00_SEL_01" resultMap="BaseResultMap">
+        SELECT
+          <include refid="col_list" />
+        FROM
+          T_TEST_DATA_TBL
+    </select>
+</mapper>

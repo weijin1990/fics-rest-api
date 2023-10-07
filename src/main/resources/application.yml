@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    poolName: ficsPool
+    url: jdbc:postgresql://localhost:5432/ficsDb?currentSchema=public
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
